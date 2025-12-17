@@ -7,9 +7,7 @@ public class Solution {
             i--;
 
             if(s[i] != ' ')
-            {
                 l++;
-            }
             else if(l > 0)
                 return l;
         }
