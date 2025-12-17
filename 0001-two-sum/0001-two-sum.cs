@@ -1,19 +1,13 @@
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
-        Dictionary<int, int> visited = new();
-        for(int i = 0; i < nums.Length; i++)
+        for(int i = 0; i < nums.Length-1; i++)
         {
-            int num = nums[i];
-            int required = target - num;
+            for(int j = i+1; j < nums.Length; j++)
+            {
+                if(nums[i] + nums[j] != target)
+                    continue;
 
-            if(!visited.TryGetValue(required, out int index))
-            {
-                visited.TryAdd(num, i);
-                continue;
-            }
-            else
-            {
-                return new int[] { i, index };
+                return new int[] { i, j };
             }
         }
 
