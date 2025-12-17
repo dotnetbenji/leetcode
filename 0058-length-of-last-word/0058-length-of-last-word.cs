@@ -11,7 +11,7 @@ public class Solution {
                 l++;
             }
             else if(l > 0)
-                break;
+                return l;
         }
 
         return l;
