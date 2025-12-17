@@ -9,10 +9,8 @@ public class Solution {
             if(s[i] != ' ')
             {
                 l++;
-                continue;
             }
-
-            if(l > 0)
+            else if(l > 0)
                 break;
         }
 
