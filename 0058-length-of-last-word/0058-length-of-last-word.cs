@@ -1,19 +1,20 @@
 public class Solution {
     public int LengthOfLastWord(string s) {
-        int i = s.Length - 1;
+        int i = s.Length;
         int l = 0;
         bool foundWord = false;
-        while(!foundWord || s[i] != ' ')
+        while(i > 1)
         {
+            i--;
+
             if(s[i] != ' ')
             {
                 l++;
-                foundWord = true;
+                continue;
             }
 
-            i --;
-            if(i < 0)
-                return l;
+            if(l > 0)
+                break;
         }
 
         return l;
