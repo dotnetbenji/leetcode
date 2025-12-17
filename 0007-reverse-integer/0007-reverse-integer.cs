@@ -1,21 +1,25 @@
 public class Solution {
     public int Reverse(int x) {
 
-        bool negative = x < 0;
-
-        char[] strArr = negative 
-            ? x.ToString().Substring(1).ToCharArray()
-            : x.ToString().ToCharArray();
-
-        Array.Reverse(strArr);
-        string mod = negative ? "-" : "";
-        string reversed = $"{mod}{string.Join("", strArr)}";
+        int sign = x < 0 ? -1 : 1;
 
         try
         {
-            return int.Parse(reversed);
+            int pos = Math.Abs(x);
+
+            int reverse = 0;
+            while(pos > 0)
+            {
+                checked
+                {
+                    reverse = reverse * 10 + (pos % 10);
+                }
+                pos /= 10;
+            }
+
+            return reverse * sign;
         }
-        catch (OverflowException)
+        catch(OverflowException)
         {
             return 0;
         }
