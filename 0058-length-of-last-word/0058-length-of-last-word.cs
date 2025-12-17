@@ -3,7 +3,7 @@ public class Solution {
         int i = s.Length;
         int l = 0;
         bool foundWord = false;
-        while(i > 1)
+        while(i > 0)
         {
             i--;
 
