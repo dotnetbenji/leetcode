@@ -14,25 +14,30 @@
 public class Solution {
     public bool HasPathSum(TreeNode root, int targetSum) {
         
-        Stack<(TreeNode, int)> nodes = new();
-        nodes.Push((root, 0));
-        do
-        {
-            (TreeNode, int) next = nodes.Pop();
-            TreeNode nextNode = next.Item1;
+        int? sum = SumRec(root, 0, targetSum);
 
-            if(nextNode == null)
-                continue;
+        return sum != null;
+    }
 
-            int total = next.Item2 + nextNode.val;
+    public int? SumRec(TreeNode node, int curTotal, int target)
+    {
+        if(node == null)
+            return null;
 
-            if(nextNode.left == null && nextNode.right == null && total == targetSum)
-                return true;
+        int newTotal = curTotal + node.val;
 
-            nodes.Push((nextNode.left, total));
-            nodes.Push((nextNode.right, total));
-        } while (nodes.Count > 0);
+        if(node.left == null && node.right == null && newTotal == target)
+            return newTotal;
+        
+        int? right = SumRec(node.right, newTotal, target) == target ? target : null;
+        int? left = SumRec(node.left, newTotal, target) == target ? target : null;
 
-        return false;
+        if(right == null)
+            return left;
+
+        if(left == null)
+            return right;
+
+        return right > left ? right : left;
     }
 }
